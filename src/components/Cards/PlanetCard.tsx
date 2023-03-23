@@ -1,11 +1,11 @@
+import { Card } from "antd";
 import { Planet } from "../../types/entities/Planet";
 
 export const PlanetCard = ({ entity }: { entity: Planet }) => {
   return (
-    <div>
-      <h3>{entity.name}</h3>
+    <Card title={entity.name} bordered={false} hoverable style={{ width: 250 }}>
       <p>{`Diameter: ${entity.diameter}`}</p>
       <p>{`Population: ${entity.population}`}</p>
-    </div>
+    </Card>
   );
 };

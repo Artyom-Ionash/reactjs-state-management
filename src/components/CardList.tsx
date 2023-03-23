@@ -10,18 +10,20 @@ export const CardList = <T extends {}>({
   cardComponent: React.ComponentType<{ entity: T }>;
 }) => {
   return (
-    <div style={{ flex: "1", marginRight: "1rem" }}>
+    <div style={{}}>
       <h2>{title}</h2>
       <ul
         style={{
           display: "flex",
           flexWrap: "wrap",
-          padding: 10,
-          width: "100%",
+          padding: 0,
+          justifyContent: "center",
         }}
       >
         {cards.map((entity, i) => (
-          <li key={i}>{React.createElement(cardComponent, { entity })}</li>
+          <li style={{ margin: "10px" }} key={i}>
+            {React.createElement(cardComponent, { entity })}
+          </li>
         ))}
       </ul>
     </div>

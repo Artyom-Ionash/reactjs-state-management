@@ -19,18 +19,17 @@ export const SearchBar = () => {
   const handleSearch = async () => {
     setLoading(true);
     try {
-      const characterResponse = await swapi.get<SearchResult<Character>>(
-        `people/?search=${searchTerm}`
-      );
-      setCharacterResults(characterResponse.data.results);
-      const planetResponse = await swapi.get<SearchResult<Planet>>(
-        `planets/?search=${searchTerm}`
-      );
-      setPlanetResults(planetResponse.data.results);
-      const starshipResponse = await swapi.get<SearchResult<Starship>>(
-        `starships/?search=${searchTerm}`
-      );
-      setStarshipResults(starshipResponse.data.results);
+      await Promise.allSettled([
+        swapi
+          .get<SearchResult<Character>>(`people/?search=${searchTerm}`)
+          .then(({ data: { results } }) => setCharacterResults(results)),
+        swapi
+          .get<SearchResult<Planet>>(`planets/?search=${searchTerm}`)
+          .then(({ data: { results } }) => setPlanetResults(results)),
+        swapi
+          .get<SearchResult<Starship>>(`starships/?search=${searchTerm}`)
+          .then(({ data: { results } }) => setStarshipResults(results)),
+      ]);
     } catch (error) {
       console.error(error);
     }

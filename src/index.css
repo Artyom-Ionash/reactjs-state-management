@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("https://krot.info/uploads/posts/2022-02/1644753016_1-krot-info-p-fon-zvezdnie-voini-1.jpg");
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment:fixed;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul {
+  list-style: none;
+}
+

@@ -1,22 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./light-sabers-svgrepo-com.svg";
+import "./App.css";
+
+import { SearchBar } from "./components/SearchBar";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <SearchBar></SearchBar>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Enter the entity name (<code>?search=</code>) and press Search button.
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://swapi.dev/api/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          The Star Wars API
         </a>
       </header>
     </div>

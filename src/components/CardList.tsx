@@ -10,7 +10,7 @@ export const CardList = <T extends {}>({
   cardComponent: React.ComponentType<{ entity: T }>;
 }) => {
   return (
-    <div style={{}}>
+    <div style={{ flex: "1" }}>
       <h2>{title}</h2>
       <ul
         style={{

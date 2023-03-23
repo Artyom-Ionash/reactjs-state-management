@@ -7,3 +7,6 @@ test("renders learn react link", () => {
   const linkElement = screen.getByText(/The Star Wars API/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+// "Cannot use import statement outside a module" with Axios
+// https://stackoverflow.com/a/75191899/5070569

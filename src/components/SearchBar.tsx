@@ -70,10 +70,10 @@ export const SearchBar = () => {
         onChange={({ target: { value } }) => setSearchTerm(value)}
       />
       <button onClick={() => handleSearch(1)}>Search</button>
+      {loading && <p>Loading...</p>}
       {(maxCount || null) && (
         <>
           <div style={{ display: "flex" }}>
-            {loading && <p>Loading...</p>}
             {characterResults && (
               <CardList
                 title={"Characters"}

@@ -11,7 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <SearchBar></SearchBar>
         <p>
-          Enter the entity name (<code>?search=</code>) and press Search button.
+          This is a test task performed on <code>React.js</code>.
         </p>
         <a
           className="App-link"

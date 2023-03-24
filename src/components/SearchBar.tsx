@@ -20,47 +20,34 @@ export const SearchBar = () => {
   const [maxCount, setMaxCount] = useState(0);
 
   const handleSearch = async (page: number) => {
-    console.log(`people/?search=${searchTerm}&page=${page}`);
     setLoading(true);
     setCurrentPage(page);
     try {
+      const fetchSearchResults = async <
+        T extends Character | Planet | Starship
+      >(
+        resource: string,
+        searchTerm: string,
+        page: number,
+        setResults: (value: React.SetStateAction<T[]>) => void
+      ): Promise<number> =>
+        swapi
+          .get<SearchResult<T>>(
+            `${resource}/?search=${searchTerm}&page=${page}`
+          )
+          .then(({ data: { results, count } }) => {
+            setResults(results);
+            return count;
+          })
+          .catch(() => {
+            setResults([]);
+            return 0;
+          });
+
       const counters = await Promise.allSettled([
-        swapi
-          .get<SearchResult<Character>>(
-            `people/?search=${searchTerm}&page=${page}`
-          )
-          .then(({ data: { results, count } }) => {
-            setCharacterResults(results);
-            return count;
-          })
-          .catch(() => {
-            setCharacterResults([]);
-            return 0;
-          }),
-        swapi
-          .get<SearchResult<Planet>>(
-            `planets/?search=${searchTerm}&page=${page}`
-          )
-          .then(({ data: { results, count } }) => {
-            setPlanetResults(results);
-            return count;
-          })
-          .catch(() => {
-            setPlanetResults([]);
-            return 0;
-          }),
-        swapi
-          .get<SearchResult<Starship>>(
-            `starships/?search=${searchTerm}&page=${page}`
-          )
-          .then(({ data: { results, count } }) => {
-            setStarshipResults(results);
-            return count;
-          })
-          .catch(() => {
-            setStarshipResults([]);
-            return 0;
-          }),
+        fetchSearchResults("people", searchTerm, page, setCharacterResults),
+        fetchSearchResults("planets", searchTerm, page, setPlanetResults),
+        fetchSearchResults("starships", searchTerm, page, setStarshipResults),
       ]).then((results) =>
         results
           .filter(

@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "./light-sabers-svgrepo-com.svg";
 import "./App.css";
 
@@ -10,9 +9,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <SearchBar></SearchBar>
-        <p>
-          This is a test task performed on <code>React.js</code>.
-        </p>
+        <p>This is a test task performed on React.js</p>
         <a
           className="App-link"
           href="https://swapi.dev/api/"
